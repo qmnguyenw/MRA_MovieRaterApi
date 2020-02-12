@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # add new
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
@@ -132,6 +133,7 @@ REST_FRAMEWORK = {
     }
 }
 
+# ADD CORS TO FRONTEND CAN ACCESS BACKEND
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:4200"
 ]
