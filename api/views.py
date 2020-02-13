@@ -10,21 +10,23 @@ from .serializers import MovieSerializer, RatingSerializer, UserSerializer
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (AllowAny,)
+    permission_classes = (AllowAny,) # allow anyone can see 
 
 class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,) # allow using token to access
+    permission_classes = (IsAuthenticated,) # only allow authenticated access
 
+    # rating action control
     @action(detail=True, methods=['POST'])
     def rate_movie(self, request, pk=None):
+        # check request has 'stars' or not
         if 'stars' in request.data:
             movie = Movie.objects.get(id=pk)
             stars = request.data['stars']
             user = request.user
-
+            # update rating
             try:
                 rating = Rating.objects.get(user=user.id, movie=movie.id)
                 rating.stars = stars
@@ -32,6 +34,7 @@ class MovieViewSet(viewsets.ModelViewSet):
                 serializer = RatingSerializer(rating, many=False)
                 response = {'message': 'Rating updated', 'result': serializer.data}
                 return Response(response, status=status.HTTP_200_OK)
+            # create rating
             except:
                 rating = Rating.objects.create(user=user, movie=movie, stars=stars)
                 serializer = RatingSerializer(rating, many=False)
@@ -44,9 +47,10 @@ class MovieViewSet(viewsets.ModelViewSet):
 class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
     serializer_class = RatingSerializer
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,) # allow using token to access
+    permission_classes = (IsAuthenticated,) # only allow authenticated access
 
+    # cannot allow user create or update through
     def update(self, request, *args, **kwargs):
         response = {'message': 'You can\'t update rating like that'}
         return Response(response, status=status.HTTP_400_BAD_REQUEST)
