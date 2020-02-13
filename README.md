@@ -1,4 +1,11 @@
 <div align="center">
+
 # Movie Rater Web Using Python Django REST Framework, and Angular
+
 <div>
-## Backend
+
+<div align="left">
+
+Backend
+
+<div>
