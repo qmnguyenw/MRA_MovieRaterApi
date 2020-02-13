@@ -16,7 +16,7 @@ django-filter==2.2.0
 django-nested-admin==3.2.4
 django-rest-knox==4.1.0
 djangorestframework==3.11.0
-ecdsa==0.13
+ecdsa==0.13.3
 Flask==1.1.1
 Flask-Cors==3.0.8
 flask-marshmallow==0.10.1
