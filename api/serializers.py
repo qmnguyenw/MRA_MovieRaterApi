@@ -21,7 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     # custom validate (optional)
     # def validate_password(self, value):
-    #     if value.isalnum():
+    #     if value.isalnum()==True:
     #         raise serializers.ValidationError('password must have atleast one special character.')
     #     return value
 
