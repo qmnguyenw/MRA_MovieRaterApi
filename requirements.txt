@@ -40,7 +40,7 @@ olefile==0.46
 opencv-python==4.1.2.30
 opt-einsum==0+untagged.49.gdbede45.dirty
 Pillow==7.0.0
-pipenv==2018.11.26
+pipenv==2022.1.8
 protobuf==3.11.2
 psycopg2==2.8.4
 pycodestyle==2.5.0
